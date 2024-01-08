@@ -2,3 +2,5 @@ django==5.0
 Pillow==10.1.0
 celery==5.3.6
 flower==2.0.1
+stripe==7.11.0
+prettyconf==2.2.1
