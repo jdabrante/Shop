@@ -44,8 +44,9 @@ class Cart:
     def __len__(self):
         return sum(item['quantity'] for item in self.cart.values())
     
+    # Puede ser que esto no funcione
     def get_total_price(self):
-        return sum(item['total_price'] for item in self.cart.values())
+        return sum(item['total_price'] for item in self)
     
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
