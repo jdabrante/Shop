@@ -1,4 +1,5 @@
 import stripe
+from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -24,10 +25,8 @@ def stripe_webhook(request):
     if event.type == 'checkout.session.completed':
         session = event.data.object
         if session.mode == 'payment' and session.payment_status == 'paid':
-            try:
-                order = Order.objects.get(id=session.client_reference_id)
-            except Order.DoesNotExist:
-                return HttpResponse(status=404)
+            order = get_object_or_404(Order, id=session.client_reference_id)
             order.paid = True
+            order.stripe_id = session.payment_intent
             order.save()
     return HttpResponse(status=200)
