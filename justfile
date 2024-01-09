@@ -12,3 +12,9 @@ rabbitmq:
 
 celery:
     celery -A myshop worker -l info
+
+webhook:
+    stripe listen --forward-to localhost:8000/payment/webhook/
+
+redis:
+    sudo docker run -it --rm --name reids -p 6379:6379 redis

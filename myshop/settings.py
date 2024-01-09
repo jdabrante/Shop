@@ -148,3 +148,9 @@ INTERNAL_IPS = [
 ]
 
 STATIC_ROOT = BASE_DIR / 'static'
+
+#Redis
+
+REDIS_HOST = 'locaslhost'
+REDIS_PORT = 6379
+REDIS_DB = 1
