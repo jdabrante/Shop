@@ -25,7 +25,7 @@ class Recommender:
             keys = [self.get_product_key(id) for id in product_ids]
             r.zunionstore(tmp_key, keys)
             r.zrem(tmp_key, *product_ids)
-            suggestion = r.zrange(tmp_key, 0, -1, desc=True)[max_results]
+            suggestion = r.zrange(tmp_key, 0, -1, desc=True)[:max_results]
             r.delete(tmp_key)
         suggested_products_ids = [int(id) for id in suggestion]
         suggested_products = list(Product.objects.filter(id__in=suggested_products_ids))
