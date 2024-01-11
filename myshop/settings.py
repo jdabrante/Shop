@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'coupons.apps.CouponsConfig',
     'rosetta',
+    'parler',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    
 }
 
 
@@ -115,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'es'
 
 LANGUAGES = [
     ('en', _('English')),
@@ -166,3 +168,16 @@ STATIC_ROOT = BASE_DIR / 'static'
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 1
+
+# django-parler settings
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en'},
+        {'code': 'es'},
+    ),
+    'default': {
+        'fallback': 'en',
+        'hide_untranslated': False,
+    }
+}
